@@ -23,6 +23,7 @@ export let dom = {
     loadBoards: function () {
         // retrieves boards and makes showBoards called
         dataHandler.getBoards(function(boards){
+
             dom.showBoards(boards);
         });
     },
