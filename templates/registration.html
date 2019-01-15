@@ -1,26 +1,30 @@
 {% extends 'layout.html' %}
 {% block content %}
-<body>
-<div class="reg-form-container">
-    <form  action="#" method="post" enctype="multipart/form-data">
-        {% if message %}
-                    <span id="warning">{{ message }}</span>
-                {% endif %}
+    <body>
+    <div class="reg-form-container">
+        <form  action="#" method="post" enctype="multipart/form-data">
+            {% if message %}
+                <span id="warning">{{ message }}</span>
+            {% endif %}
             <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter username">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-      </div>
-        <div class="form-group">
-        <label for="exampleInputPassword1">Password again</label>
-        <input type="password" class="form-control" name="confirm" id="exampleInputPassword2" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-dark" id="registration">Submit</button>
-    </form>
-</div>
-</body>
-</html>
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" id="username" aria-describedby="username" placeholder="Enter username" required>
+            </div>
+             <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" aria-describedby="email" placeholder="user@proman.com" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password again</label>
+                <input type="password" class="form-control" name="confirm" id="exampleInputPassword2" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-dark" id="registration">Submit</button>
+        </form>
+    </div>
+    </body>
+    </html>
 {% endblock %}

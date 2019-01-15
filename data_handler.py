@@ -33,9 +33,10 @@ def get_cards_for_board(board_id):
 
 @database_common.connection_handler
 def save_user(cursor, user_data, hashed_password):
-    cursor.execute("""INSERT INTO "user" (username, password)
-                   VALUES (%(user_name)s, %(hashed_password)s);""",
+    cursor.execute("""INSERT INTO "users" (username, email, hashed_password)
+                   VALUES (%(user_name)s, %(email)s, %(hashed_password)s);""",
                    {'user_name': user_data['user_name'],
+                    'email': user_data['user_email'],
                     'hashed_password': hashed_password})
 
 

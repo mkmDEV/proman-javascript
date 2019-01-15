@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, redirect, session, request
-from flask import Flask, render_template, url_for, request
 from util import json_response
 import psycopg2
 
@@ -45,6 +44,7 @@ def load_registration_page():
 @app.route('/registration', methods=['POST'])
 def registration():
     user_data = {'user_name': request.form['username'],
+                 'user_email': request.form['email'],
                  'user_password': request.form['password'],
                  'confirm_password': request.form['confirm']}
     hashed_password = password_verification.hash_password(user_data['user_password'])
@@ -68,14 +68,6 @@ def registration():
                            email=request.form['email'])
 
 
-def main():
-    app.run(debug=True)
-
-    # Serving the favicon
-    with app.app_context():
-        app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))
-
-
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -97,6 +89,14 @@ def logout():
     if 'user' in session:
         session.pop('user', None)
         return redirect('/')
+
+
+def main():
+    app.run(debug=True)
+
+    # Serving the favicon
+    with app.app_context():
+        app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))
 
 
 if __name__ == '__main__':

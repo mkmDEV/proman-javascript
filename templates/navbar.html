@@ -14,12 +14,13 @@
             </ul>
 
             <div class="navbar-nav">
-{#                    <p class="navbar-text text-white">Logged in as </p>#}
-                    <a class="nav-item nav-link" href="/registration">Create an account</a>
-                    <a class="nav-item nav-link" href="#">Log in</a>
-                    <a class="nav-item nav-link" href="#">Create an account</a>
-                    <a class="nav-item nav-link" href="{{ url_for('login') }}">Log in</a>
+                {% if 'user' in session %}
+                    <span class="navbar-text text-white mr-3">Logged in as <span class="font-weight-bold">{{ session['user'] }}</span></span>
                     <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log out</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{ url_for('registration') }}">Create an account</a>
+                    <a class="nav-item nav-link" href="{{ url_for('login') }}">Log in</a>
+                {% endif %}
             </div>
         </div>
     </nav>
