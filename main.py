@@ -1,9 +1,11 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect, session, request
 from util import json_response
 
 import data_handler
+import password_verification
 
 app = Flask(__name__)
+app.secret_key = "bx0cxa1{Nxb7xa8)xddx86xe4xb2x7fxec"
 
 
 @app.route("/")
@@ -39,6 +41,29 @@ def main():
     # Serving the favicon
     with app.app_context():
         app.add_url_rule('/favicon.ico', redirect_to=url_for('static', filename='favicon/favicon.ico'))
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = data_handler.get_user_by_email(email)
+        if user and password_verification.verify_password(password, user['hashed_password']):
+            session['user'] = user['user_name']
+            return redirect('/')
+        else:
+            message = "Login failed. Please check your details."
+            return render_template('login.html',
+                                   message=message,)
+    return render_template('login.html')
+
+
+@app.route("/logout")
+def logout():
+    if 'user' in session:
+        session.pop('user', None)
+        return redirect('/')
 
 
 if __name__ == '__main__':

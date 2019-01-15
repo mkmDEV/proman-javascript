@@ -16,7 +16,8 @@
             <div class="navbar-nav">
 {#                    <p class="navbar-text text-white">Logged in as </p>#}
                     <a class="nav-item nav-link" href="#">Create an account</a>
-                    <a class="nav-item nav-link" href="#">Log in</a>
+                    <a class="nav-item nav-link" href="{{ url_for('login') }}">Log in</a>
+                    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log out</a>
             </div>
         </div>
     </nav>
