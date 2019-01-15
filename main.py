@@ -1,7 +1,9 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 from util import json_response
+import psycopg2
 
 import data_handler
+import password_verification
 
 app = Flask(__name__)
 
@@ -31,6 +33,37 @@ def get_cards_for_board(board_id: int):
     :param board_id: id of the parent board
     """
     return data_handler.get_cards_for_board(board_id)
+
+
+@app.route('/registration')
+def load_registration_page():
+    return render_template('registration.html')
+
+
+@app.route('/registration', methods=['POST'])
+def registration():
+    user_data = {'user_name': request.form['username'],
+                 'user_password': request.form['password'],
+                 'confirm_password': request.form['confirm']}
+    hashed_password = password_verification.hash_password(user_data['user_password'])
+    if password_verification.verify_password(user_data['confirm_password'], hashed_password) is True:
+        message = 'Your registration was successful. Please, log in to continue!'
+        try:
+            data_handler.save_user(user_data, hashed_password)
+            return render_template('registration.html', message=message)
+        except psycopg2.IntegrityError as e:
+            error_message = 'Something went wrong. Please, try again!'
+            if 'user_pk' in str(e):
+                error_message = 'This username is taken.'
+            elif 'user_user_email_uindex' in str(e):
+                error_message = 'This email is taken.'
+            return render_template('registration.html', message=error_message)
+    else:
+        message = 'The passwords don\'t match. Please, try again!'
+    return render_template('registration.html',
+                           message=message,
+                           username=request.form['username'],
+                           email=request.form['email'])
 
 
 def main():
