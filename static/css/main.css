@@ -1,3 +1,32 @@
+body {
+    position: relative;
+}
+
+.background {
+    background-image: url('../img/multicolor-post-it.png');
+    opacity: 0.5;
+    width: 100%;
+    height: auto;
+    min-height: 1000px;
+}
+
+.text-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
 #boards {
     background-color: green;
+}
+
+.reg-form-container {
+    width: 40%;
+    padding: 10%;
+    margin: auto;
+    background-color: rgba(212, 212, 212, 0.7);
+    border-radius: 10px;
+    font-weight: bold;
 }

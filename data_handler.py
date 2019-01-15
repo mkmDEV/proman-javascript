@@ -1,4 +1,5 @@
 import persistence
+import database_common
 
 
 def get_card_status(status_id):
@@ -28,3 +29,21 @@ def get_cards_for_board(board_id):
             card['status_id'] = get_card_status(card['status_id'])  # Set textual status for the card
             matching_cards.append(card)
     return matching_cards
+
+
+@database_common.connection_handler
+def save_user(cursor, user_data, hashed_password):
+    cursor.execute("""INSERT INTO "users" (username, email, hashed_password)
+                   VALUES (%(user_name)s, %(email)s, %(hashed_password)s);""",
+                   {'user_name': user_data['user_name'],
+                    'email': user_data['user_email'],
+                    'hashed_password': hashed_password})
+
+
+@database_common.connection_handler
+def get_user_by_email(cursor, email):
+    cursor.execute("""SELECT * FROM "users"
+                      WHERE email=%(email)s""",
+                   {'email': email})
+    user_data = cursor.fetchone()
+    return user_data
