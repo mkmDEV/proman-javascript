@@ -47,3 +47,10 @@ def get_user_by_email(cursor, email):
                    {'email': email})
     user_data = cursor.fetchone()
     return user_data
+
+
+@database_common.connection_handler
+def get_boards(cursor, title):
+    cursor.execute("""INSERT INTO "boards" (title)
+                   VALUES (%(title)s);""",
+                   {'title': title['title']})
