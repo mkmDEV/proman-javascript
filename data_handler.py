@@ -33,8 +33,8 @@ def get_cards_for_board(board_id):
 
 @database_common.connection_handler
 def get_user_by_email(cursor, email):
-    cursor.execute("""SELECT * FROM "user"
-                      WHERE user_email=%(email)s""",
+    cursor.execute("""SELECT * FROM "users"
+                      WHERE email=%(email)s""",
                    {'email': email})
     user_data = cursor.fetchone()
     return user_data

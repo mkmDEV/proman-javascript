@@ -50,7 +50,7 @@ def login():
         password = request.form['password']
         user = data_handler.get_user_by_email(email)
         if user and password_verification.verify_password(password, user['hashed_password']):
-            session['user'] = user['user_name']
+            session['user'] = user['username']
             return redirect('/')
         else:
             message = "Login failed. Please check your details."
