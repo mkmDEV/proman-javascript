@@ -32,6 +32,14 @@ def get_cards_for_board(board_id):
 
 
 @database_common.connection_handler
+def save_user(cursor, user_data, hashed_password):
+    cursor.execute("""INSERT INTO "user" (username, password)
+                   VALUES (%(user_name)s, %(hashed_password)s);""",
+                   {'user_name': user_data['user_name'],
+                    'hashed_password': hashed_password})
+
+
+@database_common.connection_handler
 def get_user_by_email(cursor, email):
     cursor.execute("""SELECT * FROM "users"
                       WHERE email=%(email)s""",
