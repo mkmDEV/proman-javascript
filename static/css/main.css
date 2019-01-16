@@ -1,13 +1,19 @@
+html, body {
+    height:100%;
+}
+
 body {
-    position: relative;
+    background-image: url('../img/multicolor-post-it.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
 }
 
 .background {
-    background-image: url('../img/multicolor-post-it.png');
-    opacity: 0.7;
+    background-color: white;
+    opacity: 0.5;
     width: 100%;
-    height: auto;
-    min-height: 1000px;
+    height: 100%;
 }
 
 .text-wrapper {
@@ -24,8 +30,8 @@ body {
 
 .reg-form-container {
     width: 40%;
-    padding: 10%;
-    margin: auto;
+    padding: 8%;
+    margin: 2vh auto;
     background-color: rgba(212, 212, 212, 0.7);
     border-radius: 10px;
     font-weight: bold;

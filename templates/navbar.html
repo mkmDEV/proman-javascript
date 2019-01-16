@@ -18,8 +18,9 @@
                     <span class="navbar-text text-white mr-3">Logged in as <span class="font-weight-bold">{{ session['user'] }}</span></span>
                     <a class="nav-item nav-link" href="{{ url_for('logout') }}">Log out</a>
                 {% else %}
-                    <a class="nav-item nav-link" href="{{ url_for('registration') }}">Create an account</a>
-                    <a class="nav-item nav-link" href="{{ url_for('login') }}">Log in</a>
+                    <div class="mr-2"><a class="nav-item btn btn-success" href="{{ url_for('registration') }}">Create
+                        an account</a></div>
+                    <a class="nav-item btn btn-success" href="{{ url_for('login') }}">Log in</a>
                 {% endif %}
             </div>
         </div>
