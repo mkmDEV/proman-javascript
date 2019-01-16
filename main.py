@@ -17,6 +17,12 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/create-board', methods=['POST'])
+def create_board():
+
+    return redirect('/')
+
+
 @app.route("/get-boards")
 @json_response
 def get_boards():

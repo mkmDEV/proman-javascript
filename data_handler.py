@@ -50,6 +50,7 @@ def get_user_by_email(cursor, email):
     return user_data
 
 
+
 @database_common.connection_handler
 def get_boards(cursor, board_title, user_id):
     cursor.execute("""INSERT INTO "boards" (board_title, user_id)
