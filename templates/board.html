@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="reg-form-container">
+
+        <div class="text-center"><img src="{{ url_for('static', filename='favicon/favicon-96x96.png') }}"></div>
+        <form action="#" method="post" class="mt-2">
+            <div class="form-group">
+                <label for="board_title">Board Title:</label>
+                <input type="text" name="board_title" id="board_title" class="form-control" placeholder="Board Title" required>
+            </div>
+            <div class="form-check text-center">
+                <button type="submit" class="btn btn-lg btn-success">Create new board</button>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}
