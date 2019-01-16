@@ -17,16 +17,32 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/create-board', methods=['POST'])
-def create_board():
+@app.route('/create-board')
+def load_new_board_page():
+    return render_template('board.html')
 
+
+@app.route("/create-board", methods=['POST'])
+def create_board():
+    data_handler.get_boards(request.form['board_title'])
     return redirect('/')
 
 
-@app.route("/get-boards")
-@json_response
-def get_boards():
-    return data_handler.get_boards()
+@app.route('/create-card')
+def load_new_card_page():
+    return render_template('card.html')
+
+
+@app.route("/create-card", methods=['POST'])
+def create_card():
+    data_handler.get_cards(request.form['card_title'], request.form['card_info'])
+    return redirect('/')
+
+
+# @app.route("/get-boards")
+# @json_response
+# def get_boards():
+#     return data_handler.get_boards()
 
 
 @app.route("/get-cards/<int:board_id>")
