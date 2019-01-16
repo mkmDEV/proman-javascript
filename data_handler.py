@@ -53,4 +53,4 @@ def get_user_by_email(cursor, email):
 def get_boards(cursor, title):
     cursor.execute("""INSERT INTO "boards" (title)
                    VALUES (%(title)s);""",
-                   {'title': title['title']})
+                   {'title': title['board-title-input']})
