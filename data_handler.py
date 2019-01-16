@@ -1,5 +1,6 @@
 import persistence
 import database_common
+from flask import session
 
 
 def get_card_status(status_id):
@@ -50,7 +51,8 @@ def get_user_by_email(cursor, email):
 
 
 @database_common.connection_handler
-def get_boards(cursor, title):
-    cursor.execute("""INSERT INTO "boards" (title)
-                   VALUES (%(title)s);""",
-                   {'title': title['board-title-input']})
+def get_boards(cursor, board_title, user_id):
+    cursor.execute("""INSERT INTO "boards" (board_title, user_id)
+                   VALUES (%(board_title)s, %(user_id)s);""",
+                   {'board_title': board_title,
+                    'user_id': session[user_id]})

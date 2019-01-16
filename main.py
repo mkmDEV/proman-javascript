@@ -20,7 +20,6 @@ def index():
 @app.route("/get-boards")
 @json_response
 def get_boards():
-    board_data = {'title': request.form['board_title']}
     return data_handler.get_boards()
 
 
