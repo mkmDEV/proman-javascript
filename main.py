@@ -11,16 +11,35 @@ app.secret_key = "bx0cxa1{Nxb7xa8)xddx86xe4xb2x7fxec"
 
 @app.route("/")
 def index():
-    """
-    This is a one-pager which shows all the boards and cards
-    """
     return render_template('index.html')
 
 
-@app.route("/get-boards")
-@json_response
-def get_boards():
-    return data_handler.get_boards()
+@app.route('/create-board')
+def load_new_board_page():
+    return render_template('board.html')
+
+
+@app.route("/create-board", methods=['POST'])
+def create_board():
+    data_handler.get_boards(request.form['board_title'])
+    return redirect('/')
+
+
+@app.route('/create-card')
+def load_new_card_page():
+    return render_template('card.html')
+
+
+@app.route("/create-card", methods=['POST'])
+def create_card():
+    data_handler.get_card(request.form['card_title'])
+    return redirect('/')
+
+
+# @app.route("/get-boards")
+# @json_response
+# def get_boards():
+#     return data_handler.get_boards()
 
 
 @app.route("/get-cards/<int:board_id>")

@@ -51,8 +51,7 @@ def get_user_by_email(cursor, email):
 
 
 @database_common.connection_handler
-def get_boards(cursor, board_title, user_id):
-    cursor.execute("""INSERT INTO "boards" (board_title, user_id)
-                   VALUES (%(board_title)s, %(user_id)s);""",
-                   {'board_title': board_title,
-                    'user_id': session[user_id]})
+def get_boards(cursor, board_title):
+    cursor.execute("""INSERT INTO "boards" (board_title)
+                   VALUES (%(board_title)s);""",
+                   {'board_title': board_title})
