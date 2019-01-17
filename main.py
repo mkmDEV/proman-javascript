@@ -53,7 +53,31 @@ def delete_board(board_id: int):
     return redirect('/')
 
 
-@app.route("/get-cards/<int:board_id>")
+@app.route('/boards/<board_id>/rename')
+def load_board_with_title(board_id: int):
+    board_title = data_handler.get_board_by_id(board_id)
+    return render_template('board.html', board_id=board_id, board_title=board_title)
+
+
+@app.route('/boards/<board_id>/rename', methods=['POST'])
+def rename_board(board_id: int):
+    data_handler.rename_board(board_id, request.form['board_title'])
+    return redirect('/')
+
+
+@app.route('/cards/<card_id>/rename')
+def load_card_with_title(card_id: int):
+    card_info = data_handler.get_card_by_id(card_id)
+    return render_template('card.html', card_id=card_id, card_info=card_info)
+
+
+@app.route('/cards/<card_id>/rename', methods=['POST'])
+def rename_card(card_id: int):
+    data_handler.rename_card(card_id, request.form['card_info'])
+    return redirect('/')
+
+
+@app.route("/get-cards/<int:board_id>/rename")
 @json_response
 def get_cards_for_board(board_id: int):
     """

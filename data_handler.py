@@ -85,3 +85,36 @@ def delete_board(cursor, board_id):
     cursor.execute("""DELETE FROM boards WHERE id=%(board_id)s;""",
                    {'board_id': board_id})
 
+
+@database_common.connection_handler
+def get_board_by_id(cursor, board_id):
+    cursor.execute("""SELECT board_title FROM boards
+                    WHERE id=%(board_id)s""",
+                   {'board_id': board_id})
+    board_title = cursor.fetchone()
+    return board_title['board_title']
+
+
+@database_common.connection_handler
+def get_card_by_id(cursor, card_id):
+    cursor.execute("""SELECT card_info, ca FROM cards
+                    WHERE id=%(card_id)s""",
+                   {'card_id': card_id})
+    card_info = cursor.fetchall()
+    return card_info
+
+
+@database_common.connection_handler
+def rename_board(cursor, board_id, board_title):
+    cursor.execute("""UPDATE boards SET board_title=%(board_title)s
+                    WHERE id=%(board_id)s""",
+                   {'board_id': board_id,
+                    'board_title': board_title})
+
+
+@database_common.connection_handler
+def rename_card(cursor, card_id, card_info):
+    cursor.execute("""UPDATE cards SET card_info=%(card_info)s
+                    WHERE id=%(card_id)s""",
+                   {'card_id': card_id,
+                    'card_info': card_info})

@@ -7,10 +7,15 @@
         <form action="#" method="post" class="mt-2">
             <div class="form-group">
                 <label for="board_title">Board Title:</label>
-                <input type="text" name="board_title" id="board_title" class="form-control" placeholder="Board Title" required>
+                <input type="text" name="board_title" id="board_title" value="{{ board_title }}" class="form-control" placeholder="Board Title"
+                       required>
             </div>
             <div class="form-check text-center">
-                <button type="submit" class="btn btn-lg btn-success">Create new board</button>
+                {% if board_id %}
+                    <button type="submit" class="btn btn-lg btn-success">Save changes</button>
+                {% else %}
+                    <button type="submit" class="btn btn-lg btn-success">Create new board</button>
+                {% endif %}
             </div>
 
         </form>

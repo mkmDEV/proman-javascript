@@ -33,3 +33,30 @@ body {
     border-radius: 10px;
     font-weight: bold;
 }
+
+.welcome {
+    font-size: 2em;
+    text-align: center;
+}
+
+.btn-m {
+    float: right;
+}
+
+.card-content .btn-m {
+    margin-top: 0;
+    margin-right: 0;
+}
+
+.board-title {
+    float: left;
+    font-size: 2em;
+}
+
+.card-content {
+    font-size: 2em;
+    background-color: #fffab3;
+    padding: 2%;
+    margin: 2%;
+    border-radius: 10px;
+}
