@@ -35,7 +35,8 @@ def load_new_card_page():
 
 @app.route("/create-card", methods=['POST'])
 def create_card():
-    data_handler.get_cards(request.form['card_title'], request.form['card_info'])
+    card_data = {request.form['card_title'], request.form['card_info']}
+    data_handler.get_cards(card_data)
     return redirect('/')
 
 

@@ -59,8 +59,8 @@ def get_boards(cursor, board_title):
 
 
 @database_common.connection_handler
-def get_cards(cursor, card_title, card_info):
+def get_cards(cursor, card_data):
     cursor.execute("""INSERT INTO "cards" (card_title, card_info)
                    VALUES (%(card_title)s, %(card_info)s);""",
-                   {'card_title': card_title,
-                    'card_info': card_info})
+                   {'card_title': card_data['card_title'],
+                    'card_info': card_data['card_info']})
