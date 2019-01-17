@@ -12,6 +12,7 @@ def get_card_status(status_id):
     statuses = persistence.get_statuses()
     return next((status['title'] for status in statuses if status['id'] == str(status_id)), 'Unknown')
 
+
 @database_common.connection_handler
 def get_boards(cursor):
     cursor.execute("""SELECT *
@@ -77,4 +78,10 @@ def new_card(cursor, card_data, board_id):
 def delete_card(cursor, card_id):
     cursor.execute("""DELETE FROM cards WHERE id=%(card_id)s;""",
                    {'card_id': card_id})
+
+
+@database_common.connection_handler
+def delete_board(cursor, board_id):
+    cursor.execute("""DELETE FROM boards WHERE id=%(board_id)s;""",
+                   {'board_id': board_id})
 
