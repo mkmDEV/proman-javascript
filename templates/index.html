@@ -29,7 +29,7 @@
                                         <h1>New</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
-                                                <div>{{ card['card_info'] }}</div>
+                                                <div><button type="button" class="btn btn-lg btn-primary">{{ card['card_info'] }}</button><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -38,7 +38,7 @@
                                         <h1>In progress</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
-                                                <div>{{ card['card_info'] }}</div>
+                                                <div><button type="button" class="btn btn-lg btn-primary">{{ card['card_info'] }}</button><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -47,7 +47,7 @@
                                         <h1>Testing</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
-                                                <div>{{ card['card_info'] }}</div>
+                                                <div><button type="button" class="btn btn-lg btn-primary">{{ card['card_info'] }}</button><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -56,7 +56,7 @@
                                         <h1>Done</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
-                                                <div>{{ card['card_info'] }}</div>
+                                                <div><button type="button" class="btn btn-lg btn-primary">{{ card['card_info'] }}</button><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
