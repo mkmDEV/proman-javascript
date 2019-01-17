@@ -50,16 +50,15 @@ def get_user_by_email(cursor, email):
     return user_data
 
 
-
 @database_common.connection_handler
-def get_boards(cursor, board_title):
+def new_board(cursor, board_title):
     cursor.execute("""INSERT INTO "boards" (board_title)
                    VALUES (%(board_title)s);""",
                    {'board_title': board_title})
 
 
 @database_common.connection_handler
-def get_cards(cursor, card_data):
+def new_card(cursor, card_data):
     cursor.execute("""INSERT INTO "cards" (card_title, card_info)
                    VALUES (%(card_title)s, %(card_info)s);""",
                    {'card_title': card_data['card_title'],

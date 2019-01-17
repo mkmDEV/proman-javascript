@@ -24,7 +24,7 @@ def load_new_board_page():
 
 @app.route("/create-board", methods=['POST'])
 def create_board():
-    data_handler.get_boards(request.form['board_title'])
+    data_handler.new_board(request.form['board_title'])
     return redirect('/')
 
 
@@ -35,8 +35,9 @@ def load_new_card_page():
 
 @app.route("/create-card", methods=['POST'])
 def create_card():
-    card_data = {request.form['card_title'], request.form['card_info']}
-    data_handler.get_cards(card_data)
+    card_data = {'card_title': request.form['card_title'],
+                 'card_info': request.form['card_info']}
+    data_handler.new_card(card_data)
     return redirect('/')
 
 
