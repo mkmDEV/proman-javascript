@@ -33,11 +33,12 @@ def load_new_card_page():
 
 
 @app.route("/create-card", methods=['POST'])
-def create_card():
+def create_card(board_id: int):
     card_data = {'card_title': request.form['card_title'],
                  'card_info': request.form['card_info'],
                  'card_status': request.form['card_status']}
-    data_handler.new_card(card_data)
+
+    data_handler.new_card(card_data, board_id)
     return redirect('/')
 
 
