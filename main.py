@@ -41,6 +41,12 @@ def create_card():
     return redirect('/')
 
 
+@app.route('/<card_id>')
+def delete_card(card_id: int):
+    data_handler.delete_card(card_id)
+    return redirect('/')
+
+
 # @app.route("/get-boards")
 # @json_response
 # def get_boards():

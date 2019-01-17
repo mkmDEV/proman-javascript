@@ -71,3 +71,10 @@ def new_card(cursor, card_data, board_id):
                    {'card_info': card_data['card_info'],
                     'card_status': card_data['card_status'],
                     'card_board_id': board_id})
+
+
+@database_common.connection_handler
+def delete_card(cursor, card_id):
+    cursor.execute("""DELETE FROM cards WHERE id=%(card_id)s;""",
+                   {'card_id': card_id})
+
