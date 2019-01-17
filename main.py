@@ -11,10 +11,9 @@ app.secret_key = "bx0cxa1{Nxb7xa8)xddx86xe4xb2x7fxec"
 
 @app.route("/")
 def index():
-    """
-    This is a one-pager which shows all the boards and cards
-    """
-    return render_template('index.html')
+    boards = data_handler.get_boards()
+    cards = data_handler.get_cards()
+    return render_template('index.html', boards=boards, cards=cards)
 
 
 @app.route('/create-board')
@@ -24,7 +23,7 @@ def load_new_board_page():
 
 @app.route("/create-board", methods=['POST'])
 def create_board():
-    data_handler.get_boards(request.form['board_title'])
+    data_handler.new_board(request.form['board_title'])
     return redirect('/')
 
 
@@ -35,14 +34,23 @@ def load_new_card_page():
 
 @app.route("/create-card", methods=['POST'])
 def create_card():
-    data_handler.get_cards(request.form['card_title'], request.form['card_info'])
+    card_data = {'card_info': request.form['card_info'],
+                 'card_status': request.form['card_status']}
+    board_id = request.args.get('board_id')
+    data_handler.new_card(card_data, board_id)
     return redirect('/')
 
 
-# @app.route("/get-boards")
-# @json_response
-# def get_boards():
-#     return data_handler.get_boards()
+@app.route('/cards/<card_id>')
+def delete_card(card_id: int):
+    data_handler.delete_card(card_id)
+    return redirect('/')
+
+
+@app.route("/boards/<board_id>")
+def delete_board(board_id: int):
+    data_handler.delete_board(board_id)
+    return redirect('/')
 
 
 @app.route("/get-cards/<int:board_id>")

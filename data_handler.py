@@ -13,12 +13,20 @@ def get_card_status(status_id):
     return next((status['title'] for status in statuses if status['id'] == str(status_id)), 'Unknown')
 
 
-def get_boards():
-    """
-    Gather all boards
-    :return:
-    """
-    return persistence.get_boards(force=True)
+@database_common.connection_handler
+def get_boards(cursor):
+    cursor.execute("""SELECT *
+                      FROM boards""",)
+    boards = cursor.fetchall()
+    return boards
+
+
+@database_common.connection_handler
+def get_cards(cursor):
+    cursor.execute("""SELECT *
+                      FROM cards""",)
+    cards = cursor.fetchall()
+    return cards
 
 
 def get_cards_for_board(board_id):
@@ -50,17 +58,30 @@ def get_user_by_email(cursor, email):
     return user_data
 
 
-
 @database_common.connection_handler
-def get_boards(cursor, board_title):
+def new_board(cursor, board_title):
     cursor.execute("""INSERT INTO "boards" (board_title)
                    VALUES (%(board_title)s);""",
                    {'board_title': board_title})
 
 
 @database_common.connection_handler
-def get_cards(cursor, card_title, card_info):
-    cursor.execute("""INSERT INTO "cards" (card_title, card_info)
-                   VALUES (%(card_title)s, %(card_info)s);""",
-                   {'card_title': card_title,
-                    'card_info': card_info})
+def new_card(cursor, card_data, board_id):
+    cursor.execute("""INSERT INTO "cards" (card_info, card_status, card_board_id)
+                   VALUES (%(card_info)s, %(card_status)s, %(card_board_id)s);""",
+                   {'card_info': card_data['card_info'],
+                    'card_status': card_data['card_status'],
+                    'card_board_id': board_id})
+
+
+@database_common.connection_handler
+def delete_card(cursor, card_id):
+    cursor.execute("""DELETE FROM cards WHERE id=%(card_id)s;""",
+                   {'card_id': card_id})
+
+
+@database_common.connection_handler
+def delete_board(cursor, board_id):
+    cursor.execute("""DELETE FROM boards WHERE id=%(board_id)s;""",
+                   {'board_id': board_id})
+
