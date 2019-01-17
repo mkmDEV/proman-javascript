@@ -29,7 +29,8 @@
                                         <h1>New</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
-                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button><br><br></div>
+                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button>
+                                                    <a href="{{ url_for('delete_card', card_id = card['id']) }}"><button type="button" class="btn btn-lg btn-danger">X</button></a><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -38,7 +39,8 @@
                                         <h1>In progress</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
-                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button><br><br></div>
+                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button>
+                                                    <a href="{{ url_for('delete_card', card_id = card['id']) }}"><button type="button" class="btn btn-lg btn-danger">X</button></a><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -47,7 +49,8 @@
                                         <h1>Testing</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
-                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button><br><br></div>
+                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button>
+                                                    <a href="{{ url_for('delete_card', card_id = card['id']) }}"><button type="button" class="btn btn-lg btn-danger">X</button></a><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -56,7 +59,8 @@
                                         <h1>Done</h1>
                                         {% for card in cards %}
                                             {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
-                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button><br><br></div>
+                                                <div><button type="button" class="btn btn-lg btn-secondary">{{ card['card_info'] }}</button>
+                                                    <a href="{{ url_for('delete_card', card_id = card['id']) }}"><button type="button" class="btn btn-lg btn-danger">X</button></a><br><br></div>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
