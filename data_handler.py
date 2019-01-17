@@ -66,9 +66,8 @@ def new_board(cursor, board_title):
 
 @database_common.connection_handler
 def new_card(cursor, card_data, board_id):
-    cursor.execute("""INSERT INTO "cards" (card_title, card_info, card_status, card_board_id)
-                   VALUES (%(card_title)s, %(card_info)s, %(card_status)s, %(card_board_id)s);""",
-                   {'card_title': card_data['card_title'],
-                    'card_info': card_data['card_info'],
+    cursor.execute("""INSERT INTO "cards" (card_info, card_status, card_board_id)
+                   VALUES (%(card_info)s, %(card_status)s, %(card_board_id)s);""",
+                   {'card_info': card_data['card_info'],
                     'card_status': card_data['card_status'],
                     'card_board_id': board_id})
