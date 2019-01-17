@@ -12,13 +12,20 @@ def get_card_status(status_id):
     statuses = persistence.get_statuses()
     return next((status['title'] for status in statuses if status['id'] == str(status_id)), 'Unknown')
 
+@database_common.connection_handler
+def get_boards(cursor):
+    cursor.execute("""SELECT *
+                      FROM boards""",)
+    boards = cursor.fetchall()
+    return boards
 
-def get_boards():
-    """
-    Gather all boards
-    :return:
-    """
-    return persistence.get_boards(force=True)
+
+@database_common.connection_handler
+def get_cards(cursor):
+    cursor.execute("""SELECT *
+                      FROM cards""",)
+    cards = cursor.fetchall()
+    return cards
 
 
 def get_cards_for_board(board_id):

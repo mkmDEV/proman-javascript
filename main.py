@@ -11,10 +11,9 @@ app.secret_key = "bx0cxa1{Nxb7xa8)xddx86xe4xb2x7fxec"
 
 @app.route("/")
 def index():
-    """
-    This is a one-pager which shows all the boards and cards
-    """
-    return render_template('index.html')
+    boards = data_handler.get_boards()
+    cards = data_handler.get_cards()
+    return render_template('index.html', boards=boards, cards=cards)
 
 
 @app.route('/create-board')
