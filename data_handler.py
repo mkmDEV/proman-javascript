@@ -97,7 +97,7 @@ def get_board_by_id(cursor, board_id):
 
 @database_common.connection_handler
 def get_card_by_id(cursor, card_id):
-    cursor.execute("""SELECT card_info, ca FROM cards
+    cursor.execute("""SELECT card_info FROM cards
                     WHERE id=%(card_id)s""",
                    {'card_id': card_id})
     card_info = cursor.fetchall()
