@@ -18,118 +18,118 @@
                 </div>
             </div>
         </div>
-    {% endif %}
-<div id="boards" class="mt-2 ml-3 mr-3" role="tablist">
-    {% for board in boards %}
-        <div class="card">
-            <div class="card-header" role="tab" id="collapseOne">
-                <h5 class="mb-0">
-                    <div class="board-title">{{ board['board_title'] }}</div>
-                    <a href="{{ url_for('create_card', board_id = board['id']) }}">
-                        <button type="button" class="btn btn-m btn-info">Create card</button>
-                    </a>
-                    <a href="{{ url_for('delete_board', board_id = board['id']) }}">
-                        <button type="button" class="btn btn-m btn-danger">X</button>
-                    </a>
-                    </a>
-                    <a href="{{ url_for('rename_board', board_id = board['id']) }}">
-                        <button type="button" class="btn btn-m btn-warning">Edit</button>
+        <div id="boards" class="mt-2 ml-3 mr-3" role="tablist">
+            {% for board in boards %}
+                <div class="card">
+                    <div class="card-header" role="tab" id="collapseOne">
+                        <h5 class="mb-0">
+                            <div class="board-title">{{ board['board_title'] }}</div>
+                            <a href="{{ url_for('create_card', board_id = board['id']) }}">
+                                <button type="button" class="btn btn-m btn-info">Create card</button>
+                            </a>
+                            <a href="{{ url_for('delete_board', board_id = board['id']) }}">
+                                <button type="button" class="btn btn-m btn-danger">X</button>
+                            </a>
+                            </a>
+                            <a href="{{ url_for('rename_board', board_id = board['id']) }}">
+                                <button type="button" class="btn btn-m btn-warning">Edit</button>
 
-                    </a>
-                    <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            </a>
+                            <a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
-                 data-parent="#accordion">
-                <div class="container-fluid">
-                    <div class="card-body row">
-                        <div class="col-sm-3 text-center">
-                            <h4>New</h4>
-                            {% for card in cards %}
-                                {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
-                                    <div class="card-content">
-                                        <a href="{{ url_for('delete_card', card_id = card['id']) }}">
-                                            <button type="button" class="btn btn-m btn-danger">X</button>
-                                        </a>
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne"
+                         data-parent="#accordion">
+                        <div class="container-fluid">
+                            <div class="card-body row">
+                                <div class="col-sm-3 text-center">
+                                    <h4>New</h4>
+                                    {% for card in cards %}
+                                        {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
+                                            <div class="card-content">
+                                                <a href="{{ url_for('delete_card', card_id = card['id']) }}">
+                                                    <button type="button" class="btn btn-m btn-danger">X</button>
+                                                </a>
 
-                                        </a>
-                                        <a href="{{ url_for('rename_card', card_id = card['id']) }}">
-                                            <button type="button" class="btn btn-m btn-danger">Edit</button>
+                                                </a>
+                                                <a href="{{ url_for('rename_card', card_id = card['id']) }}">
+                                                    <button type="button" class="btn btn-m btn-warning">Edit</button>
 
-                                        </a></button>
-                                        {{ card['card_info'] }}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                        <div class="col-sm-3 text-center">
-                            <h4>In progress</h4>
-                            {% for card in cards %}
-                                {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
-                                    <div class="card-content">
-                                        <a href="{{ url_for('delete_card', card_id = card['id']) }}">
-                                            <button type="button" class="btn btn-m btn-danger">X</button>
-                                        </a>
-
-                                        </a>
-                                        <a href="{{ url_for('rename_card', card_id = card['id']) }}">
-                                            <button type="button" class="btn btn-m btn-warning">Edit</button>
-
-                                        </a></button>
-                                        {{ card['card_info'] }}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                        <div class="col-sm-3 text-center">
-                            <h4>Testing</h4>
-                            {% for card in cards %}
-                                {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
-                                    <div class="card-content">
-                                        <a href="{{ url_for('delete_card', card_id = card['id']) }}">
-                                            <button type="button" class="btn btn-m btn-danger">X</button>
-                                        </a>
-
-                                        </a>
-                                        <a href="{{ url_for('rename_card', card_id = card['id']) }}">
-                                            <button type="button" class="btn btn-m btn-warning">Edit</button>
-
-                                        </a></button>
-                                        {{ card['card_info'] }}
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-
-                        <div class="col-sm-3 text-center">
-                            <h4>Done</h4>
-                            {% for card in cards %}
-                                {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
-                                    <<div class="card-content">
-                                    <a href="{{ url_for('delete_card', card_id = card['id']) }}">
-                                        <button type="button" class="btn btn-m btn-danger">X</button>
-                                    </a>
-
-                                    </a>
-                                    <a href="{{ url_for('rename_card', card_id = card['id']) }}">
-                                        <button type="button" class="btn btn-m btn-danger">Edit</button>
-
-                                    </a></button>
-                                    {{ card['card_info'] }}
+                                                </a></button>
+                                                {{ card['card_info'] }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
                                 </div>
-                                {% endif %}
-                            {% endfor %}
+
+                                <div class="col-sm-3 text-center">
+                                    <h4>In progress</h4>
+                                    {% for card in cards %}
+                                        {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
+                                            <div class="card-content">
+                                                <a href="{{ url_for('delete_card', card_id = card['id']) }}">
+                                                    <button type="button" class="btn btn-m btn-danger">X</button>
+                                                </a>
+
+                                                </a>
+                                                <a href="{{ url_for('rename_card', card_id = card['id']) }}">
+                                                    <button type="button" class="btn btn-m btn-warning">Edit</button>
+
+                                                </a></button>
+                                                {{ card['card_info'] }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-sm-3 text-center">
+                                    <h4>Testing</h4>
+                                    {% for card in cards %}
+                                        {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
+                                            <div class="card-content">
+                                                <a href="{{ url_for('delete_card', card_id = card['id']) }}">
+                                                    <button type="button" class="btn btn-m btn-danger">X</button>
+                                                </a>
+
+                                                </a>
+                                                <a href="{{ url_for('rename_card', card_id = card['id']) }}">
+                                                    <button type="button" class="btn btn-m btn-warning">Edit</button>
+
+                                                </a></button>
+                                                {{ card['card_info'] }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                                <div class="col-sm-3 text-center">
+                                    <h4>Done</h4>
+                                    {% for card in cards %}
+                                        {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
+                                            <div class="card-content">
+                                            <a href="{{ url_for('delete_card', card_id = card['id']) }}">
+                                                <button type="button" class="btn btn-m btn-danger">X</button>
+                                            </a>
+
+                                            </a>
+                                            <a href="{{ url_for('rename_card', card_id = card['id']) }}">
+                                                <button type="button" class="btn btn-m btn-warning">Edit</button>
+
+                                            </a></button>
+                                            {{ card['card_info'] }}
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-</div>
+    {% endif %}
 </main>
 
     <footer class="container text-center fixed-bottom text-muted">
