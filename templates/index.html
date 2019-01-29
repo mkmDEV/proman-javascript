@@ -45,7 +45,7 @@
                         <div class="container-fluid">
                             <div class="card-body row">
                                 <div class="col-sm-3 text-center">
-                                    <h4>New</h4>
+                                    <div class="status-name"><h4>New</h4></div>
                                     {% for card in cards %}
                                         {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
                                             <div class="card-content">
@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="col-sm-3 text-center">
-                                    <h4>In progress</h4>
+                                    <div class="status-name"><h4>In progress</h4></div>
                                     {% for card in cards %}
                                         {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
                                             <div class="card-content">
@@ -85,7 +85,7 @@
                                 </div>
 
                                 <div class="col-sm-3 text-center">
-                                    <h4>Testing</h4>
+                                    <div class="status-name"><h4>Testing</h4></div>
                                     {% for card in cards %}
                                         {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
                                             <div class="card-content">
@@ -105,7 +105,7 @@
                                 </div>
 
                                 <div class="col-sm-3 text-center">
-                                    <h4>Done</h4>
+                                    <div class="status-name"><h4>Done</h4></div>
                                     {% for card in cards %}
                                         {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
                                             <div class="card-content">
