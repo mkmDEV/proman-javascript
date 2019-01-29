@@ -81,3 +81,7 @@ body {
 .btn-info {
     background-color: #caedaa;
 }
+
+.modal {
+    display: none; /* Hidden by default */
+}
