@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block head %}
-    <script src="{{ url_for('static', filename="js/modal_changes.js") }}"></script>
+    <script src="{{ url_for('static', filename="js/modal_changes.js") }}" defer></script>
 {% endblock %}
 {% block content %}
     {% if 'user' not in session %}
@@ -11,7 +11,7 @@
         <main id="main" role="main" class="p-3">
 {# modal #}
 
-            <div class="reg-form-container modal" id="board-modal">
+            <div class="reg-form-container modal" id="board_modal">
                 <div class="text-center"><img src="{{ url_for('static', filename='favicon/favicon-96x96.png') }}"></div>
                 <form action="#" method="post" class="mt-2">
                     <div class="form-group">
@@ -34,9 +34,7 @@
             <div class="row">
                 <div class="col-sm-9"></div>
                 <div class="col-sm-3 text-right">
-                    <a href="{{ url_for('create_board') }}">
-                        <button type="button" class="btn btn-lg btn-info">Add new board</button>
-                    </a>
+                    <button type="button" class="btn btn-lg btn-info" id="create_board">Add new board</button>
                 </div>
             </div>
         </div>

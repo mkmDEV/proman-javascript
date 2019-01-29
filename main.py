@@ -9,22 +9,15 @@ app = Flask(__name__)
 app.secret_key = "bx0cxa1{Nxb7xa8)xddx86xe4xb2x7fxec"
 
 
-@app.route("/")
+@app.route("/", methods=['POST', 'GET'])
 def index():
-    boards = data_handler.get_boards()
-    cards = data_handler.get_cards()
-    return render_template('index_with_modals.html', boards=boards, cards=cards)
-
-
-@app.route('/create-board')
-def load_new_board_page():
-    return render_template('board.html')
-
-
-@app.route("/create-board", methods=['POST'])
-def create_board():
-    data_handler.new_board(request.form['board_title'])
-    return redirect('/')
+    if request.method == 'GET':
+        boards = data_handler.get_boards()
+        cards = data_handler.get_cards()
+        return render_template('index_with_modals.html', boards=boards, cards=cards)
+    else:
+        data_handler.new_board(request.form['board_title'])
+        return redirect('/')
 
 
 @app.route('/create-card')
