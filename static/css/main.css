@@ -3,6 +3,10 @@ body {
     font-family: 'Gloria Hallelujah', cursive;
 }
 
+#main {
+    padding: 5%;
+}
+
 .reg-form-container {
     width: 40%;
     padding: 8%;
@@ -67,4 +71,42 @@ body {
 
 .status-name {
     font-family: 'Permanent Marker', cursive;
+}
+
+.card {
+    margin-bottom: 5%;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.gu-mirror {
+  cursor:move; cursor:-webkit-grabbing; cursor:-moz-grabbing; cursor:grabbing;
+  position: fixed !important;
+  margin: 0 !important;
+  opacity: 1;
+
+}
+
+.gu-hide {
+  display: none !important;
+}
+
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+.gu-transit {
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
 }

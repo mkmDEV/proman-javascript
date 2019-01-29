@@ -23,14 +23,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
-    <script type="module" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css"/>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js' defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/drag_and_drop.js') }}"></script>
     {% block head %}{% endblock %}
 </head>
 <body>
-<div class="background">
-</div>
-<div class="text-wrapper">
-    <div class="content">
+
         {% include 'navbar.html' %}
         {% block content %}{% endblock %}
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -42,7 +41,5 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
-    </div>
-</div>
 </body>
 </html>
