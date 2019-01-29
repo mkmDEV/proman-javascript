@@ -54,9 +54,30 @@ body {
 }
 
 .card-content {
-    font-size: 2em;
+    font-size: 1.5em;
     background-color: #fffab3;
     padding: 2%;
     margin: 2%;
     border-radius: 10px;
+}
+
+.btn-warning {
+    background-color: #fcc161;
+}
+
+.btn-danger {
+    background-color: firebrick;
+}
+
+.card-header, .navbar {
+    background-color: #FCC161;
+    font-size: 1.5em;
+}
+
+.board-title {
+    font-size: 1.5em;
+}
+
+.btn-info {
+    background-color: #caedaa;
 }
