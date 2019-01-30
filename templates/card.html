@@ -7,15 +7,15 @@
         <form action="#" method="post" class="mt-2">
             <div class="form-group">
                 <label for="card_info">Card Information:</label>
-                <input type="text" name="card_info" id="card_info" value="{{ card_info }}" class="form-control" placeholder="Information" required>
+                <input type="text" name="card_info" id="card_info" value="{{ card_info['card_info'] }}" class="form-control" placeholder="Information" required>
             </div>
             <div class="form-group">
                 <label for="card_status">Card Status:</label>
                 <select name="card_status">
-                    <option value="new">New</option>
-                    <option value="in_progress">In Progress</option>
-                    <option value="testing">Testing</option>
-                    <option value="done">Done</option>
+                    <option {% if card_info['card_status']=='new' %} selected {% endif %} value="new">New</option>
+                    <option {% if card_info['card_status']=='in_progress' %} selected {% endif %} value="in_progress">In Progress</option>
+                    <option {% if card_info['card_status']=='testing' %} selected {% endif %} value="testing">Testing</option>
+                    <option {% if card_info['card_status']=='done' %} selected {% endif %} value="done">Done</option>
                 </select>
                 <div class="form-check text-center">
                     {% if card_info %}

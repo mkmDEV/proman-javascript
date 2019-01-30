@@ -97,10 +97,10 @@ def get_board_by_id(cursor, board_id):
 
 @database_common.connection_handler
 def get_card_by_id(cursor, card_id):
-    cursor.execute("""SELECT card_info FROM cards
+    cursor.execute("""SELECT card_info, card_status FROM cards
                     WHERE id=%(card_id)s""",
                    {'card_id': card_id})
-    card_info = cursor.fetchall()
+    card_info = cursor.fetchone()
     return card_info
 
 
@@ -113,8 +113,9 @@ def rename_board(cursor, board_id, board_title):
 
 
 @database_common.connection_handler
-def rename_card(cursor, card_id, card_info):
-    cursor.execute("""UPDATE cards SET card_info=%(card_info)s
+def update_card(cursor, card_id, card_info, card_status):
+    cursor.execute("""UPDATE cards SET card_info=%(card_info)s, card_status=%(card_status)s
                     WHERE id=%(card_id)s""",
                    {'card_id': card_id,
-                    'card_info': card_info})
+                    'card_info': card_info,
+                    'card_status': card_status})

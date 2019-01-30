@@ -1,9 +1,9 @@
-window.onload = function getBoards () {
-    let boards = document.getElementsByClassName('card-body')
+window.onload = function getBoards() {
+    let boards = document.getElementsByClassName('card-body');
     for (let board of boards) {
         dragAndDrop(board)
     }
-}
+};
 
 
 
