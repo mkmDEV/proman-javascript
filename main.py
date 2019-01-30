@@ -16,7 +16,13 @@ def index():
         cards = data_handler.get_cards()
         return render_template('index_with_modals.html', boards=boards, cards=cards)
     else:
-        data_handler.new_board(request.form['board_title'])
+        if request.form.get('board_title'):
+            data_handler.new_board(request.form.get('board_title'))
+        else:
+            card_data = {'card_info': request.form['card_info'],
+                         'card_status': request.form['card_status']}
+            board_id = request.args.get('board_id')
+            data_handler.new_card(card_data, board_id)
         return redirect('/')
 
 
