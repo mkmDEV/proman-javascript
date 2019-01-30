@@ -5,25 +5,23 @@ window.onload = function getBoards() {
     }
 };
 
-
-
-    function dragAndDrop(board) {
-        dragula([
+function dragAndDrop(board) {
+    dragula([
             board.querySelector('#b1'),
             board.querySelector('#b2'),
             board.querySelector('#b3'),
             board.querySelector('#b4')
         ],
-            {
-      revertOnSpill: true
-    });
+        {
+            revertOnSpill: true
+        });
 
-        // disable text-selection
-        function disableselect(e) {
-            return false;
-        }
-
-        board.onselectstart = new Function();
-        board.onmousedown = disableselect;
-
+    // disable text-selection
+    function disableselect(e) {
+        return false;
     }
+
+    board.onselectstart = new Function();
+    board.onmousedown = disableselect;
+
+}
