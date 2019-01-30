@@ -1,25 +1,29 @@
-window.onload = function dragAndDrop() {
+window.onload = function getBoards () {
+    let boards = document.getElementsByClassName('card-body')
+    for (let board of boards) {
+        dragAndDrop(board)
+    }
+}
+
+
+
+    function dragAndDrop(board) {
         dragula([
-            document.getElementById('b1'),
-            document.getElementById('b2'),
-            document.getElementById('b3'),
-            document.getElementById('b4')
-        ]);
-
-
-        // Scrollable area
-        let element = document.getElementById("boards"); // Count Boards
-        let numberOfBoards = element.getElementsByClassName('board').length;
-        let boardsWidth = numberOfBoards * 30; // Width of all Boards
-        console.log(boardsWidth);
-        element.style.width = boardsWidth + "%"; // set Width
+            board.querySelector('#b1'),
+            board.querySelector('#b2'),
+            board.querySelector('#b3'),
+            board.querySelector('#b4')
+        ],
+            {
+      revertOnSpill: true
+    });
 
         // disable text-selection
         function disableselect(e) {
             return false;
         }
 
-        document.onselectstart = new Function();
-        document.onmousedown = disableselect;
+        board.onselectstart = new Function();
+        board.onmousedown = disableselect;
 
     }

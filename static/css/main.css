@@ -41,6 +41,7 @@ body {
     padding: 2%;
     margin: 2%;
     border-radius: 10px;
+    text-align: left;
 }
 
 .btn-warning {
@@ -109,4 +110,8 @@ body {
   opacity: 0.4;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
   filter: alpha(opacity=20);
+}
+
+#b1, #b2, #b3, #b4 {
+    min-height: 5em;
 }

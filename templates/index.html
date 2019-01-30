@@ -46,11 +46,12 @@
                         <div class="container-fluid">
                             <div class="card-body row">
                                 <div class="col-sm-3 text-center">
+                                    <header class="status-name"><h4>New</h4></header>
                                     <div class="board" id="board1">
-                                        <header class="status-name"><h4>New</h4></header>
                                         <div id="b1">
                                             {% for card in cards %}
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
+                                                    <span>
                                                     <div class="card-content noselect">
                                                         <a href="{{ url_for('delete_card', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-danger">X
@@ -65,17 +66,19 @@
                                                         </a></button>
                                                         {{ card['card_info'] }}
                                                     </div>
+                                                    </span>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 text-center">
+                                    <header class="status-name"><h4>In progress</h4></header>
                                     <div class="board" id="board2">
-                                        <header class="status-name"><h4>In progress</h4></header>
                                         <div id="b2">
                                             {% for card in cards %}
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
+                                                    <span>
                                                     <div class="card-content noselect">
                                                         <a href="{{ url_for('delete_card', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-danger">X
@@ -90,6 +93,7 @@
                                                         </a></button>
                                                         {{ card['card_info'] }}
                                                     </div>
+                                                    </span>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
@@ -101,6 +105,7 @@
                                         <div id="b3">
                                             {% for card in cards %}
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
+                                                    <span>
                                                     <div class="card-content noselect">
                                                         <a href="{{ url_for('delete_card', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-danger">X
@@ -115,17 +120,19 @@
                                                         </a></button>
                                                         {{ card['card_info'] }}
                                                     </div>
+                                                    </span>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                                 <div id="boards" class=" col-sm-3 text-center">
-                                    <div id="board4">
+                                    <div class="board" id="board4">
                                         <header class="status-name"><h4>Done</h4></header>
                                         <div id="b4">
                                             {% for card in cards %}
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
+                                                    <span>
                                                     <div class="card-content noselect">
                                                         <a href="{{ url_for('delete_card', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-danger">X
@@ -140,6 +147,7 @@
                                                         </a></button>
                                                         {{ card['card_info'] }}
                                                     </div>
+                                                    </span>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>
