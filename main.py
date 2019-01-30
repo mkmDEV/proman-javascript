@@ -68,13 +68,20 @@ def rename_board(board_id: int):
 @app.route('/cards/<card_id>/rename')
 def load_card_with_title(card_id: int):
     card_info = data_handler.get_card_by_id(card_id)
-    print(card_info)
     return render_template('card.html', card_id=card_id, card_info=card_info)
 
 
 @app.route('/cards/<card_id>/rename', methods=['POST'])
 def rename_card(card_id: int):
-    data_handler.update_card(card_id, request.form['card_info'], request.form['card_status'])
+    try:
+        card_info = request.form['card_info']
+        card_status = request.form['card_status']
+        print(request.form)
+        data_handler.update_card(card_id, card_info, card_status)
+    except:
+        card_info = request.json['card_info']
+        card_status = request.json['card_status']
+        data_handler.update_card(card_id, card_info, card_status)
     return redirect('/')
 
 
