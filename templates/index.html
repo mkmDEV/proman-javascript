@@ -32,7 +32,7 @@
                                 <button type="button" class="btn btn-m btn-danger">X</button>
                             </a>
                             </a>
-                            <a href="{{ url_for('rename_board', board_id = board['id']) }}">
+                            <a href="{{ url_for('rename_board', board_id = board['id'], board_cardorder = board['card_order']) }}">
                                 <button type="button" class="btn btn-m btn-warning">Edit</button>
                             </a>
                             <a data-toggle="collapse" href="#collapseOne" aria-expanded="true"

@@ -61,14 +61,16 @@ def load_board_with_title(board_id: int):
 
 
 @app.route('/boards/<board_id>/rename', methods=['POST'])
-def rename_board(board_id: int):
+def rename_board(board_id: int, board_cardorder=None):
     try:
-        data_handler.update_board(board_id, request.form['board_title'])
-    except:
         board_id = request.json['board_id']
         card_order = request.json['card_order']
         board_title = request.json['board_title']
         data_handler.update_board(board_id, board_title, card_order)
+    except:
+        board_title = request.form['board_title']
+        board_cardorder = board_cardorder
+        data_handler.update_board(board_id, board_title, board_cardorder)
     return redirect('/')
 
 
