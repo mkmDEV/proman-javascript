@@ -105,11 +105,12 @@ def get_card_by_id(cursor, card_id):
 
 
 @database_common.connection_handler
-def rename_board(cursor, board_id, board_title):
-    cursor.execute("""UPDATE boards SET board_title=%(board_title)s
+def update_board(cursor, board_id, board_title, card_order):
+    cursor.execute("""UPDATE boards SET board_title=%(board_title)s, card_order=%(card_order)s
                     WHERE id=%(board_id)s""",
                    {'board_id': board_id,
-                    'board_title': board_title})
+                    'board_title': board_title,
+                    'card_order': card_order})
 
 
 @database_common.connection_handler

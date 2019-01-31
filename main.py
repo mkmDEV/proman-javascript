@@ -61,7 +61,13 @@ def load_board_with_title(board_id: int):
 
 @app.route('/boards/<board_id>/rename', methods=['POST'])
 def rename_board(board_id: int):
-    data_handler.rename_board(board_id, request.form['board_title'])
+    try:
+        data_handler.update_board(board_id, request.form['board_title'])
+    except:
+        board_id = request.json['board_id']
+        card_order = request.json['card_order']
+        board_title = request.json['board_title']
+        data_handler.update_board(board_id, board_id, board_title, card_order)
     return redirect('/')
 
 
@@ -139,7 +145,7 @@ def login():
         else:
             message = "Login failed. Please check your details."
             return render_template('login.html',
-                                   message=message,)
+                                   message=message, )
     return render_template('login.html')
 
 
