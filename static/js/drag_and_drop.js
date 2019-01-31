@@ -22,16 +22,11 @@ function dragAndDrop(board) {
         let cardBoardId = currentCard.dataset.boardid;
         currentCard.setAttribute('data-status', el.parentElement.dataset.status);
         let cardStatus = el.parentElement.dataset.status;
-        let board = document.getElementById(cardBoardId);
-        let cardsOfBoard = board.closest('#boards').getElementsByClassName('card-content');
-        let cardOrder = [];
-        for (let card of cardsOfBoard) {
-            cardOrder.push(card.dataset.id)
-        }
-        let boardTitle = board.dataset.title;
+        let order = getCardOrder(cardBoardId);
+
 
         updateCard(cardId, cardInfo, cardStatus);
-        updateBoard(cardBoardId, boardTitle, cardOrder.toString())
+        updateBoard(cardBoardId, order.boardTitle, order.cardOrder)
     });
 
     // disable text-selection
@@ -43,7 +38,17 @@ function dragAndDrop(board) {
     board.onmousedown = disableselect;
 
 }
-
+function getCardOrder (cardBoardId) {
+    let currentBoard = document.getElementById(cardBoardId);
+    let cardsOfBoard = currentBoard.closest('#boards').getElementsByClassName('card-content');
+    let cardOrder = [];
+    let boardTitle = currentBoard.dataset.title;
+    for (let card of cardsOfBoard) {
+        cardOrder.push(card.dataset.id)
+    }
+    return {cardOrder: cardOrder.toString(),
+        boardTitle: boardTitle}
+}
 function updateCard(cardId, cardInfo, cardStatus) {
     let data = {'card_info': cardInfo, 'card_status': cardStatus};
     fetch(`/cards/${cardId}/rename`, {

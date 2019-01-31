@@ -29,7 +29,8 @@ def create_board():
 
 @app.route('/create-card')
 def load_new_card_page():
-    return render_template('card.html')
+    card_info = ''
+    return render_template('card.html', card_info=card_info)
 
 
 @app.route("/create-card", methods=['POST'])
