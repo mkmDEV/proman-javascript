@@ -15,17 +15,23 @@ function dragAndDrop(board) {
         {
             revertOnSpill: true
         }).on('dragend', function (el) {
-        let card_id = el.firstElementChild.dataset.id;
-        let card_info = el.firstElementChild.dataset.info;
-        let board = el.closest("board-title")
-        let board_id = board.dataset.id;
-        console.log(board_id)
-        let board_title = board.dataset.title;
-        let card_order = board.dataset.cardorder;
-        el.firstElementChild.setAttribute('data-status', el.parentElement.dataset.status);
-        let card_status = el.parentElement.dataset.status;
-        updateCard(card_id, card_info, card_status);
-        updateBoard(board_id, board_title, card_order)
+        const currentCard = el.firstElementChild;
+        let cardId = currentCard.dataset.id;
+        let cardInfo = currentCard.dataset.info;
+        console.log(cardInfo)
+        let cardBoardId = currentCard.dataset.boardid;
+        currentCard.setAttribute('data-status', el.parentElement.dataset.status);
+        let cardStatus = el.parentElement.dataset.status;
+        let board = document.getElementById(cardBoardId);
+        let cardsOfBoard = board.closest('#boards').getElementsByClassName('card-content');
+        let cardOrder = [];
+        for (let card of cardsOfBoard) {
+            cardOrder.push(card.dataset.id)
+        }
+        let boardTitle = board.dataset.title;
+
+        updateCard(cardId, cardInfo, cardStatus);
+        updateBoard(cardBoardId, boardTitle, cardOrder.toString())
     });
 
     // disable text-selection
@@ -38,9 +44,9 @@ function dragAndDrop(board) {
 
 }
 
-function updateCard(card_id, card_info, card_status) {
-    let data = {'card_info': card_info, 'card_status': card_status};
-    fetch(`/cards/${card_id}/rename`, {
+function updateCard(cardId, cardInfo, cardStatus) {
+    let data = {'card_info': cardInfo, 'card_status': cardStatus};
+    fetch(`/cards/${cardId}/rename`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -50,9 +56,9 @@ function updateCard(card_id, card_info, card_status) {
     });
 }
 
-function updateBoard(board_id, card_order) {
-    let data = {'board_id': board_id, 'card_order': card_order};
-    fetch(`/cards/${board_id}/rename`, {
+function updateBoard(boardId, boardTitle, cardOrder) {
+    let data = {'board_id': boardId, 'board_title': boardTitle, 'card_order': cardOrder};
+    fetch(`/boards/${boardId}/rename`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

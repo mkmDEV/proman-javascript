@@ -67,13 +67,14 @@ def rename_board(board_id: int):
         board_id = request.json['board_id']
         card_order = request.json['card_order']
         board_title = request.json['board_title']
-        data_handler.update_board(board_id, board_id, board_title, card_order)
+        data_handler.update_board(board_id, board_title, card_order)
     return redirect('/')
 
 
 @app.route('/cards/<card_id>/rename')
 def load_card_with_title(card_id: int):
     card_info = data_handler.get_card_by_id(card_id)
+    print(card_info)
     return render_template('card.html', card_id=card_id, card_info=card_info)
 
 
@@ -82,7 +83,6 @@ def rename_card(card_id: int):
     try:
         card_info = request.form['card_info']
         card_status = request.form['card_status']
-        print(request.form)
         data_handler.update_card(card_id, card_info, card_status)
     except:
         card_info = request.json['card_info']

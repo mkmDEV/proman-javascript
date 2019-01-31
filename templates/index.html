@@ -23,7 +23,7 @@
                     <div class="card-header" role="tab" id="collapseOne">
                         <h5 class="mb-0">
                             <div class="board-title"
-                                 data-title="{{ board['board_title'] }}" data-id="{{ board['id'] }}"
+                                 data-title="{{ board['board_title'] }}" id="{{ board['id'] }}"
                                  data-cardorder="{{ board['card_order'] }}">{{ board['board_title'] }}</div>
                             <a href="{{ url_for('create_card', board_id = board['id']) }}">
                                 <button type="button" class="btn btn-m btn-info">Create card</button>
@@ -52,14 +52,14 @@
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "new" %}
                                                     <span>
                                                     <div class="card-content noselect"
+                                                         data-boardid="{{ card['card_board_id'] }}"
                                                          data-status="{{ card['card_status'] }}"
                                                          data-id="{{ card['id'] }}" data-info="{{ card['card_info'] }}">
-                                                        <a href="{{ url_for('delete_card', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-danger">X
                                                             </button>
                                                         </a>
                                                         </a>
-                                                        <a href="{{ url_for('rename_card', card_id = card['id']) }}">
+                                                        <a href="{{ url_for('load_card_with_title', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-warning">Edit
                                                             </button>
                                                         </a></button>
@@ -79,6 +79,7 @@
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "in_progress" %}
                                                     <span>
                                                     <div class="card-content noselect"
+                                                         data-boardid="{{ card['card_board_id'] }}"
                                                          data-status="{{ card['card_status'] }}"
                                                          data-id="{{ card['id'] }}" data-info="{{ card['card_info'] }}">
                                                         <a href="{{ url_for('delete_card', card_id = card['id']) }}">
@@ -106,9 +107,9 @@
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "testing" %}
                                                     <span>
                                                     <div class="card-content noselect"
+                                                         data-boardid="{{ card['card_board_id'] }}"
                                                          data-status="{{ card['card_status'] }}"
                                                          data-id="{{ card['id'] }}" data-info="{{ card['card_info'] }}">
-                                                        <a href="{{ url_for('delete_card', card_id = card['id']) }}">
                                                             <button type="button" class="btn btn-m btn-danger">X
                                                             </button>
                                                         </a>
@@ -134,6 +135,7 @@
                                                 {% if card['card_board_id'] == board['id'] and card['card_status'] == "done" %}
                                                     <span>
                                                     <div class="card-content noselect"
+                                                         data-boardid="{{ card['card_board_id'] }}"
                                                          data-status="{{ card['card_status'] }}"
                                                          data-id="{{ card['id'] }}" data-info="{{ card['card_info'] }}">
                                                         <a href="{{ url_for('delete_card', card_id = card['id']) }}">

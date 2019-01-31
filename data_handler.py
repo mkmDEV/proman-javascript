@@ -16,15 +16,19 @@ def get_card_status(status_id):
 @database_common.connection_handler
 def get_boards(cursor):
     cursor.execute("""SELECT *
-                      FROM boards""",)
+                      FROM boards
+                      ORDER BY id""",)
     boards = cursor.fetchall()
     return boards
 
 
 @database_common.connection_handler
 def get_cards(cursor):
-    cursor.execute("""SELECT *
-                      FROM cards""",)
+    cursor.execute("""SELECT cards.id, cards.card_info, cards.card_status, cards.card_board_id
+                      FROM cards
+                      JOIN boards b on cards.card_board_id = b.id
+                      GROUP BY cards.card_board_id, cards.id, b.card_order
+                      ORDER BY POSITION(cards.id::text IN (b.card_order)) """,)
     cards = cursor.fetchall()
     return cards
 
