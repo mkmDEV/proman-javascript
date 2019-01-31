@@ -13,18 +13,28 @@ app.secret_key = "bx0cxa1{Nxb7xa8)xddx86xe4xb2x7fxec"
 def index():
     boards = data_handler.get_boards()
     cards = data_handler.get_cards()
-    return render_template('index.html', boards=boards, cards=cards)
+    print(boards)
+    return render_template('index_with_modals.html', boards=boards, cards=cards)
+
+@app.route("/get_data", methods=["GET","POST"])
+def get_data():
+    boards = data_handler.get_boards()
+    cards = data_handler.get_cards()
+    boards_and_cards ={"boards": boards,"cards": cards}
+    return jsonify({boards_and_cards})
 
 
-@app.route('/create-board')
-def load_new_board_page():
-    return render_template('board.html')
+# @app.route('/create-board')
+# def load_new_board_page():
+#     return render_template('board.html')
 
-
+#experimenting
 @app.route("/create-board", methods=['POST'])
 def create_board():
-    data_handler.new_board(request.form['board_title'])
-    return redirect('/')
+    new_board = request.form.get('board_title')
+    if new_board:
+        data_handler.new_board(new_board)
+        return jsonify()
 
 
 @app.route('/create-card')
