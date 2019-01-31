@@ -19,12 +19,12 @@
         </div>
         <div id="boards" class="mt-2 ml-3 mr-3" role="tablist">
             {% for board in boards %}
-                <div class="card">
+                <div class="card" data-title="{{ board['board_title'] }}" data-id="{{ board['id'] }}"
+                     data-cardorder="{{ board['card_order'] }}">
                     <div class="card-header" role="tab" id="collapseOne">
                         <h5 class="mb-0">
                             <div class="board-title"
-                                 data-title="{{ board['board_title'] }}" id="{{ board['id'] }}"
-                                 data-cardorder="{{ board['card_order'] }}">{{ board['board_title'] }}</div>
+                            >{{ board['board_title'] }}</div>
                             <a href="{{ url_for('create_card', board_id = board['id']) }}">
                                 <button type="button" class="btn btn-m btn-info">Create card</button>
                             </a>

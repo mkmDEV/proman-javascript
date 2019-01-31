@@ -18,7 +18,6 @@ function dragAndDrop(board) {
         const currentCard = el.firstElementChild;
         let cardId = currentCard.dataset.id;
         let cardInfo = currentCard.dataset.info;
-        console.log(cardInfo)
         let cardBoardId = currentCard.dataset.boardid;
         currentCard.setAttribute('data-status', el.parentElement.dataset.status);
         let cardStatus = el.parentElement.dataset.status;
@@ -38,17 +37,25 @@ function dragAndDrop(board) {
     board.onmousedown = disableselect;
 
 }
-function getCardOrder (cardBoardId) {
-    let currentBoard = document.getElementById(cardBoardId);
-    let cardsOfBoard = currentBoard.closest('#boards').getElementsByClassName('card-content');
-    let cardOrder = [];
-    let boardTitle = currentBoard.dataset.title;
-    for (let card of cardsOfBoard) {
-        cardOrder.push(card.dataset.id)
+
+function getCardOrder(cardBoardId) {
+    let boards = document.getElementsByClassName('card');
+    for (let currentBoard of boards) {
+        if (currentBoard.dataset.id === cardBoardId) {
+            let cardsOfBoard = currentBoard.getElementsByClassName('card-content');
+            let cardOrder = [];
+            let boardTitle = currentBoard.dataset.title;
+            for (let card of cardsOfBoard) {
+                cardOrder.push(card.dataset.id)
+            }
+            return {
+                cardOrder: cardOrder.toString(),
+                boardTitle: boardTitle
+            }
+        }
     }
-    return {cardOrder: cardOrder.toString(),
-        boardTitle: boardTitle}
 }
+
 function updateCard(cardId, cardInfo, cardStatus) {
     let data = {'card_info': cardInfo, 'card_status': cardStatus};
     fetch(`/cards/${cardId}/rename`, {
